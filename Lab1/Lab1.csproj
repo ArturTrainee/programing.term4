@@ -53,12 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exercises\DentistOfficeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Exercises\DentistOfficeForm.Designer.cs">
-      <DependentUpon>DentistOfficeForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Exercises\Exercise1.cs">
       <SubType>Form</SubType>
     </Compile>

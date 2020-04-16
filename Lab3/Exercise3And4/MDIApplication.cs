@@ -6,7 +6,6 @@ namespace Lab3.Exercise3And4
     public partial class MdiApplication : Form
     {
         private int childFormNumber;
-        private int openDocuments;
 
         public MdiApplication()
         {
@@ -103,12 +102,7 @@ namespace Lab3.Exercise3And4
             switch (e.ClickedItem.Tag.ToString())
             {
                 case "NewDoc":
-                    var newChіld = new Form
-                    {
-                        MdiParent = this
-                    };
-                    newChіld.Show();
-                    newChіld.Text = $"{newChіld.Text} {++openDocuments}";
+                    ShowNewForm(sender, e);
                     break;
                 case "Cascade":
                     LayoutMdi(MdiLayout.Cascade);
