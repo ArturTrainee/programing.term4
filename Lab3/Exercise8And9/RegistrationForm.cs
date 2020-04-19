@@ -59,6 +59,12 @@ namespace Lab3.Exercise8And9
 
         private void TextBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("Поле PIN може містити лише цифри");
+                errorProvider1.SetError(textBox1, "Must be digit");
+            }
         }
 
         private void TextBox2_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -73,11 +79,11 @@ namespace Lab3.Exercise8And9
                 {
                     double.Parse(textBox2.Text);
                     e.Cancel = false;
-                } 
+                }
                 catch
                 {
                     e.Cancel = true;
-                    MessageBox.Show("Поле PIN не може мыстити букви");
+                    MessageBox.Show("Поле PIN не може містити букви");
                 }
             }
         }
