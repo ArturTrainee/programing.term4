@@ -63,7 +63,7 @@ namespace Lab3.Exercise8And9
             {
                 e.Handled = true;
                 MessageBox.Show("Поле PIN може містити лише цифри");
-                errorProvider1.SetError(textBox1, "Must be digit");
+                errorProvider1.SetError(textBox2, "Must be digit");
             }
         }
 
