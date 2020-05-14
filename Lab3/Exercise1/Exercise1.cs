@@ -10,7 +10,10 @@ namespace Lab3.Exercise1
             InitializeComponent();
         }
 
-        private void Btnyes_Click(object sender, EventArgs e) => MessageBox.Show("Mи й не сумнівалися, що Ви так думаєте!");
+        private void Btnyes_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Mи й не сумнівалися, що Ви так думаєте!");
+        }
 
         private void Btnno_MouseMove(object sender, MouseEventArgs e)
         {

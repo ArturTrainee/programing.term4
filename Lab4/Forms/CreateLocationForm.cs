@@ -8,7 +8,13 @@ namespace Lab4.Forms
     {
         private Location location;
 
-        internal Location CreatedLocation { get => location; }
+        internal Location CreatedLocation
+        {
+            get
+            {
+                return location;
+            }
+        }
 
         public CreateLocationForm()
         {

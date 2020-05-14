@@ -15,24 +15,21 @@ namespace Lab3.Exercise8And9
         {
             if (checkBox1.Checked)
             {
-                var lb1 = new Label
-                {
-                    Location = new Point(6, 74),
-                    Size = new Size(32, 23),
-                    Name = "labelll",
-                    TabIndex = 2,
-                    Text = "PIN2"
-                };
-
+                var lb1 = new Label();
+                lb1.Location = new Point(6, 74);
+                lb1.Size = new Size(32, 23);
+                lb1.Name = "labelll";
+                lb1.TabIndex = 2;
+                lb1.Text = "PIN2";
+                
                 groupBox1.Controls.Add(lb1);
-                var txt = new TextBox
-                {
-                    Location = new Point(64, 74),
-                    Size = new Size(140, 22),
-                    Name = "textboxx",
-                    TabIndex = 1,
-                    Text = ""
-                };
+                var txt = new TextBox();
+                txt.Location = new Point(64, 74);
+                txt.Size = new Size(140, 22);
+                txt.Name = "textboxx";
+                txt.TabIndex = 1;
+                txt.Text = "";
+
                 txt.KeyPress += TextBox2_KeyPress;
                 groupBox1.Controls.Add(txt);
             }

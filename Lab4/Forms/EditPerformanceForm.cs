@@ -6,13 +6,17 @@ namespace Lab4.Forms
 {
     public partial class EditPerformanceForm : Form
     {
-        private static readonly Enum[] CATEGORIES = new Enum[] {
-            Category.Drama, Category.Operata, Category.Opera, Category.Ballet
-        };
+        private static readonly Enum[] categories = new Enum[4];
 
         private Performance performance;
 
-        internal Performance Performance { get => performance; }
+        internal Performance Performance
+        {
+            get
+            {
+                return performance;
+            }
+        }
 
         internal EditPerformanceForm(Performance performance)
         {
@@ -20,7 +24,12 @@ namespace Lab4.Forms
 
             nameTextBox.Text = performance.Name;
 
-            comboBox1.Items.AddRange(CATEGORIES);
+            categories[0] = Category.Drama;
+            categories[1] = Category.Operata;
+            categories[2] = Category.Opera;
+            categories[3] = Category.Ballet;
+
+            comboBox1.Items.AddRange(categories);
             comboBox1.SelectedItem = performance.Category;
 
             locationTextBox.Text = performance.Location.ToString();

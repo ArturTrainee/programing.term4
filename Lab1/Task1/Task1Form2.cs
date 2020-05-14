@@ -5,7 +5,10 @@ namespace ProgramingTerm4.Lab1.Task1
 {
     public partial class Task1Form2 : Form
     {
-        public Task1Form2() => InitializeComponent();
+        public Task1Form2()
+        {
+            InitializeComponent();
+        }
 
         private void Button1_Click(object sender, EventArgs e)
         {

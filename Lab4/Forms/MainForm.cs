@@ -51,7 +51,8 @@ namespace Lab4.Forms
             }
             catch (IOException ex)
             {
-                MessageBox.Show("Не вдалося знайти файл із раніше збереженими даними,\nпочинаємо <<з чистого листа>>.\nДеталі помилки: " + ex.Message);
+                MessageBox.Show("Не вдалося знайти файл із раніше збереженими даними,\nпочинаємо <<з чистого листа>>." +
+                    "\nДеталі помилки: " + ex.Message);
                 repertoires.Clear();
             }
         }

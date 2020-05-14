@@ -14,12 +14,19 @@ namespace ProgramingTerm4.Lab1.Task3
 
         public Shape(Panel panel)
         {
-            this.panel = panel ?? throw new ArgumentNullException("Panel is null");
+            if (panel == null) throw new ArgumentNullException("Panel is null");
+            this.panel = panel;
             ColorOnHover = defaultColor;
         }
 
-        public void ChangeColorOnHover() => panel.BackColor = ColorOnHover;
+        public void ChangeColorOnHover()
+        {
+            panel.BackColor = ColorOnHover;
+        }
 
-        public void ChangeColorToDefault() => panel.BackColor = defaultColor;
+        public void ChangeColorToDefault()
+        {
+            panel.BackColor = defaultColor;
+        }
     }
 }

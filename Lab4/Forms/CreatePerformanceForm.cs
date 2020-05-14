@@ -6,20 +6,29 @@ namespace Lab4.Forms
 {
     public partial class CreatePerformanceForm : Form
     {
-        private static readonly Enum[] CATEGORIES = new Enum[] {
-            Category.Drama, Category.Operata, Category.Opera, Category.Ballet
-        };
+        private Enum[] categories = new Enum[4];
 
         private Performance performance;
 
-        internal Performance Performance { get => performance; }
+        internal Performance Performance
+        {
+            get
+            {
+                return performance;
+            }
+        }
 
         public CreatePerformanceForm()
         {
             InitializeComponent();
 
-            comboBox1.Items.AddRange(CATEGORIES);
-            comboBox1.SelectedItem = CATEGORIES[0];
+            categories[0] = Category.Drama;
+            categories[1] = Category.Operata;
+            categories[2] = Category.Opera;
+            categories[3] = Category.Ballet;
+
+            comboBox1.Items.AddRange(categories);
+            comboBox1.SelectedItem = categories[0];
 
             dateTimePicker1.Value = DateTime.Now;
 
@@ -86,7 +95,7 @@ namespace Lab4.Forms
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            performance.Category = (Category)CATEGORIES[comboBox1.SelectedIndex];
+            performance.Category = (Category)categories[comboBox1.SelectedIndex];
         }
     }
 }

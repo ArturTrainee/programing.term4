@@ -14,7 +14,13 @@ namespace Lab4.Forms
             repertoire = new Repertoire();
         }
 
-        public Repertoire Repertoire { get => repertoire; }
+        public Repertoire Repertoire
+        {
+            get
+            {
+                return repertoire;
+            }
+        }
 
         private void AddBtn_Click(object sender, EventArgs e)
         {

@@ -8,7 +8,13 @@ namespace Lab4.Forms
     {
         private Troupe troupe;
 
-        internal Troupe Troupe { get => troupe; }
+        internal Troupe Troupe
+        {
+            get
+            {
+                return troupe;
+            }
+        }
 
         public EditTroupeForm(Troupe troupe)
         {

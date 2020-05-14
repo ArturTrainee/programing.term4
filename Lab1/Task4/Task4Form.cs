@@ -15,7 +15,9 @@ namespace ProgramingTerm4.Lab1.Task4
         {
             InitializeComponent();
             var startPosition = new Point(LabelGenerationButton.Location.X, LabelGenerationButton.Location.Y);
-            labels.Add(new Label { Location = startPosition }, labelId);
+            var newLabel = new Label();
+            newLabel.Location = startPosition;
+            labels.Add(newLabel, labelId);
         }
 
         private void LabelGenerationButton_Click(object sender, EventArgs e)
