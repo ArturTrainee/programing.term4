@@ -15,7 +15,11 @@ namespace Lab4.Entities
 
         public string Name
         {
-            get => name;
+            get
+            {
+                return name;
+            }
+
             set
             {
                 if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("Name cannot be null or white space");
@@ -25,7 +29,11 @@ namespace Lab4.Entities
 
         public string Address
         {
-            get => address;
+            get
+            {
+                return address;
+            }
+
             set
             {
                 if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("Address cannot be null or white space");
@@ -35,7 +43,11 @@ namespace Lab4.Entities
 
         public int RentalPrice
         {
-            get => rentalPrice;
+            get
+            {
+                return rentalPrice;
+            }
+
             set
             {
                 if (value < 0) throw new ArgumentException("Rental price cannot be less than 0");
@@ -45,7 +57,11 @@ namespace Lab4.Entities
 
         public int FreeSeatsAmount
         {
-            get => freeSeatsAmount;
+            get
+            {
+                return freeSeatsAmount;
+            }
+
             set
             {
                 if (value < 0) throw new ArgumentException("Free seats amount cannot be less than 0");
@@ -55,7 +71,11 @@ namespace Lab4.Entities
 
         public static int OrchestraPrice
         {
-            get => orchestraPrice;
+            get
+            {
+                return orchestraPrice;
+            }
+
             set
             {
                 if (value < 0) throw new ArgumentException("Orchestra price cannot be less than 0");
@@ -63,9 +83,16 @@ namespace Lab4.Entities
             }
         }
 
-        public override string ToString() => $"Location {'{'}Name: {name}, Address: {address}, Rental Price: {rentalPrice}, Free Seats Amount: {freeSeatsAmount}, Orchestra Price: {orchestraPrice}{'}'}";
+        public override string ToString()
+        {
+            return "Location {Name: " + name + ", Address: " + address + ", Rental Price: " + rentalPrice + ", Free Seats Amount: " +
+                freeSeatsAmount + ", Orchestra Price: " + orchestraPrice + "}";
+        }
 
-        public XmlSchema GetSchema() => null;
+        public XmlSchema GetSchema()
+        {
+            return null;
+        }
 
         public void ReadXml(XmlReader reader)
         {

@@ -15,11 +15,9 @@ namespace Lab3.Exercise3And4
 
         private void ShowNewForm(object sender, EventArgs e)
         {
-            Form childForm = new Form
-            {
-                MdiParent = this,
-                Text = "Окно " + childFormNumber++
-            };
+            Form childForm = new Form();
+            childForm.MdiParent = this;
+            childForm.Text = "Окно " + childFormNumber++;
             childForm.Show();
         }
 

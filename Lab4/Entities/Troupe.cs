@@ -13,7 +13,11 @@ namespace Lab4.Entities
 
         public string Name
         {
-            get => name;
+            get
+            {
+                return name;
+            }
+
             set
             {
                 if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("Name cannot be null or white space");
@@ -23,7 +27,11 @@ namespace Lab4.Entities
 
         public int ActorsAmount
         {
-            get => actorsAmount;
+            get
+            {
+                return actorsAmount;
+            }
+
             set
             {
                 if (value < 1) throw new ArgumentException("Actors amount cannot be less than 1");
@@ -33,7 +41,11 @@ namespace Lab4.Entities
 
         public int ActorsSalary
         {
-            get => actorsSalary;
+            get
+            {
+                return actorsSalary;
+            }
+
             set
             {
                 if (value < 0) throw new ArgumentException("Actors salary cannot be less than 0");
@@ -43,10 +55,13 @@ namespace Lab4.Entities
 
         public override string ToString()
         {
-            return $"Troupe {'{'}Name: {name}, Actors Amount: {actorsAmount}, Actors Salary: {actorsSalary}{'}'}";
+            return "Troupe {Name: " + name + ", Actors Amount: " + actorsAmount + ", Actors Salary: " + actorsSalary + "}";
         }
 
-        public XmlSchema GetSchema() => null;
+        public XmlSchema GetSchema()
+        {
+            return null;
+        }
 
         public void ReadXml(XmlReader reader)
         {

@@ -64,9 +64,16 @@ namespace Lab4.Entities
             }
         }
 
-        public string ToShortString() => $"Repertoire {'{'}Location Name: {locationName}, Performances amount: {performances.Count}{'}'}";
+        public string ToShortString()
+        {
+            return "Repertoire {Location Name: " + locationName + ", Performances amount: " + performances.Count + "}";
+        }
 
-        public override string ToString() => $"Repertoire {'{'}LocationName: {locationName}, Performances: {string.Join(";\n", performances.Select(p => p.ToString()).ToArray())}{'}'}";
+        public override string ToString()
+        {
+            return "Repertoire {LocationName: " + locationName + ", Performances: " + 
+                string.Join(";\n", performances.Select(p => p.ToString()).ToArray()) + "}";
+        }
 
         public XmlSchema GetSchema() => null;
 
@@ -111,7 +118,7 @@ namespace Lab4.Entities
             writer.WriteEndElement();
 
             writer.WriteStartElement("Performances");
-            foreach (Performance p in performances)
+            foreach (var p in performances)
             {
                 writer.WriteStartElement("Performance");
                 p.WriteXml(writer);

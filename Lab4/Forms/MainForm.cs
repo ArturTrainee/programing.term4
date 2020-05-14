@@ -27,29 +27,31 @@ namespace Lab4.Forms
             try
             {
                 using (var fs = new FileStream(REPERTOIRES_PATH, FileMode.Open, FileAccess.ReadWrite))
-                using (var reader = XmlReader.Create(fs))
                 {
-                    reader.MoveToContent();
-
-                    while (reader.Read())
+                    using (var reader = XmlReader.Create(fs))
                     {
-                        if (reader.Name.Equals("Repertoire"))
+                        reader.MoveToContent();
+
+                        while (reader.Read())
                         {
-                            var repertoire = new Repertoire();
-                            repertoire.ReadXml(reader);
-                            repertoires.Add(repertoire);
+                            if (reader.Name.Equals("Repertoire"))
+                            {
+                                var repertoire = new Repertoire();
+                                repertoire.ReadXml(reader);
+                                repertoires.Add(repertoire);
+                            }
+                            if (reader.Name.Equals("ArrayOfRepertoire")) break;
                         }
-                        if (reader.Name.Equals("ArrayOfRepertoire")) break;
                     }
-                }
-                foreach (var repertoire in repertoires)
-                {
-                    listBox1.Items.Add(repertoire.ToShortString());
+                    foreach (var repertoire in repertoires)
+                    {
+                        listBox1.Items.Add(repertoire.ToShortString());
+                    }
                 }
             }
             catch (IOException ex)
             {
-                MessageBox.Show($"Не вдалося знайти файл із раніше збереженими даними,\nпочинаємо <<з чистого листа>>.\nДеталі помилки: {ex.Message}");
+                MessageBox.Show("Не вдалося знайти файл із раніше збереженими даними,\nпочинаємо <<з чистого листа>>.\nДеталі помилки: " + ex.Message);
                 repertoires.Clear();
             }
         }
@@ -57,14 +59,23 @@ namespace Lab4.Forms
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             using (var fs = new FileStream(REPERTOIRES_PATH, FileMode.Create, FileAccess.Write))
-            using (var writer = XmlWriter.Create(fs, new XmlWriterSettings { Indent = true, ConformanceLevel = ConformanceLevel.Auto }))
             {
-                var serializer = new XmlSerializer(typeof(List<Repertoire>));
-                serializer.Serialize(writer, repertoires);
+                var writeSettings = new XmlWriterSettings();
+                writeSettings.Indent = true;
+                writeSettings.ConformanceLevel = ConformanceLevel.Auto;
+
+                using (var writer = XmlWriter.Create(fs, writeSettings))
+                {
+                    var serializer = new XmlSerializer(typeof(List<Repertoire>));
+                    serializer.Serialize(writer, repertoires);
+                }
             }
         }
 
-        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e) => buttonEditSelected.Enabled = true;
+        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            buttonEditSelected.Enabled = true;
+        }
 
         private void ButtonNew_Click(object sender, EventArgs e)
         {

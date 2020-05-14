@@ -17,61 +17,117 @@ namespace Lab4.Entities
 
         public string Name
         {
-            get => name;
+            get
+            {
+                return name;
+            }
+
             set
             {
-                if(string.IsNullOrWhiteSpace(value)) throw new ArgumentException("Performance name cannot be null or white space");
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Performance name cannot be null or white space");
+                }
+
                 name = value;
             }
         }
 
         public DateTime StartDate
         {
-            get => startDate;
+            get
+            {
+                return startDate;
+            }
+
             set
             {
-                if (value < DateTime.Now) throw new ArgumentException("Start date cannot be later than now");
                 startDate = value;
             }
         }
 
         public int RentPrice
         {
-            get => rentPrice;
+            get
+            {
+                return rentPrice;
+            }
+
             set
             {
-                if (value < 0) throw new ArgumentException("Rent price cannot be less than 0");
+                if (value < 0)
+                {
+                    throw new ArgumentException("Rent price cannot be less than 0");
+                }
+
                 rentPrice = value;
             }
         }
 
-        public bool HasOrchestra { get => hasOrchestra; set => hasOrchestra = value; }
+        public bool HasOrchestra
+        {
+            get { return hasOrchestra; }
+            set
+            {
+                hasOrchestra = value;
+            }
+        }
 
-        internal Category Category { get => category; set => category = value; }
+        internal Category Category
+        {
+            get { return category; }
+            set
+            {
+                category = value;
+            }
+        }
 
         internal Location Location
         {
-            get => location;
+            get
+            {
+                return location;
+            }
+
             set
             {
-                if (value is null) throw new ArgumentNullException("Location cannot be null");
+                if (value is null)
+                {
+                    throw new ArgumentNullException("Location cannot be null");
+                }
+
                 location = value;
             }
         }
 
         internal Troupe Troupe
         {
-            get => troupe;
+            get
+            {
+                return troupe;
+            }
+
             set
             {
-                if (value is null) throw new ArgumentNullException("Troupe cannot be null");
+                if (value is null)
+                {
+                    throw new ArgumentNullException("Troupe cannot be null");
+                }
+
                 troupe = value;
             }
         }
 
-        public override string ToString() => $"Performance {'{'}(Name: {name}, Category: {category}, {location}, {troupe}, Date: {startDate}, Rent Price: {rentPrice}, Has Orchestra: {hasOrchestra}{'}'}";
+        public override string ToString()
+        {
+            return "Performance {Name: " + name + ", Category: " + category + ", " + location + ", " + troupe + ", Date: " + startDate +
+                ", Rent Price: " + rentPrice + ", Has Orchestra: " + hasOrchestra + "}";
+        }
 
-        public XmlSchema GetSchema() => null;
+        public XmlSchema GetSchema()
+        {
+            return null;
+        }
 
         public void ReadXml(XmlReader reader)
         {
@@ -112,7 +168,10 @@ namespace Lab4.Entities
                             break;
                     }
                 }
-                if (reader.Name.Equals("Performance")) break;
+                if (reader.Name.Equals("Performance"))
+                {
+                    break;
+                }
             }
         }
 
