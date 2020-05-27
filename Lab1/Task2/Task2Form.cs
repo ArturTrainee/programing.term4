@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ProgramingTerm4.Lab1.Task2
@@ -13,21 +14,7 @@ namespace ProgramingTerm4.Lab1.Task2
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            var labelsList = new List<Control>();
-
-            foreach (Control control in Controls)
-            {
-                if (control is Label)
-                {
-                    labelsList.Add(control);
-                }
-            }
-
-            foreach (var label in labelsList)
-            {
-                Controls.Remove(label);
-                label.Dispose();
-            }
+            this.Controls.OfType<Label>().ToList().ForEach(l => l.Dispose());
         }
     }
 }

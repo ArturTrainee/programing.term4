@@ -29,5 +29,10 @@ namespace Lab3.Exercise1
                 btnno.Left = 120;
             }
         }
+
+        private void btnno_Enter(object sender, EventArgs e)
+        {
+            btnyes.Focus();
+        }
     }
 }

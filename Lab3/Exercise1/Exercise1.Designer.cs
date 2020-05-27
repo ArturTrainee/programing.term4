@@ -49,8 +49,10 @@
             this.btnno.Name = "btnno";
             this.btnno.Size = new System.Drawing.Size(146, 52);
             this.btnno.TabIndex = 0;
+            this.btnno.TabStop = false;
             this.btnno.Text = "Ні";
             this.btnno.UseVisualStyleBackColor = true;
+            this.btnno.Enter += new System.EventHandler(this.btnno_Enter);
             this.btnno.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Btnno_MouseMove);
             // 
             // label1
