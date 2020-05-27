@@ -11,7 +11,7 @@ namespace Lab4.Utils
     {
         public static void WriteEntitiesTo(string path, IList<T> entities)
         {
-            using (var fs = new FileStream(path, FileMode.CreateNew, FileAccess.Write))
+            using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
             {
                 var writeSettings = new XmlWriterSettings();
                 writeSettings.Indent = true;
