@@ -22,10 +22,7 @@ namespace Lab4.Entities
             get { return locationName; }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentException("Location name cannot be null or white space");
-                }
+                if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("Location name cannot be null or white space");
                 locationName = value;
             }
         }
@@ -35,31 +32,14 @@ namespace Lab4.Entities
             get { return performances; }
             set
             {
-                if (value is null)
-                {
-                    throw new ArgumentNullException("Performances list cannot be null");
-                }
+                if (value is null) throw new ArgumentNullException("Performances list cannot be null");
                 performances = value;
             }
         }
 
-        internal void AddPerformance(Performance performance)
+        internal Performance GetPerformanceByToString(string searchedItem)
         {
-            if (performance != null)
-            {
-                performances.Add(performance);
-            }
-        }
-
-        internal void RemovePerformance(string performanceName)
-        {
-            for (int i = 0; i < performances.Count; i++)
-            {
-                if (performances[i].Name.Equals(performanceName))
-                {
-                    performances.RemoveAt(i);
-                }
-            }
+            return performances.Where(p => p.ToString().Equals(searchedItem)).First();
         }
 
         public string ToShortString()
@@ -77,9 +57,8 @@ namespace Lab4.Entities
 
         public void ReadXml(XmlReader reader)
         {
-            do
+            while (reader.Read())
             {
-                reader.Read();
                 if (reader.Name.Equals("LocationName"))
                 {
                     LocationName = reader.ReadElementContentAsString();
@@ -103,15 +82,13 @@ namespace Lab4.Entities
                         }
                     } while (reader.Name.Equals("Performance"));
                 }
-            } while (reader.Name.Equals("Repertoire"));
+                if (reader.Name.Equals("Repertoire")) break;
+            }
         }
 
         public void WriteXml(XmlWriter writer)
         {
-            writer.WriteStartElement("LocationName");
-            writer.WriteString(locationName);
-            writer.WriteEndElement();
-
+            writer.WriteElementString("LocationName", locationName);
             writer.WriteStartElement("Performances");
             foreach (var p in performances)
             {

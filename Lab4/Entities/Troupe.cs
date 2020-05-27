@@ -13,11 +13,7 @@ namespace Lab4.Entities
 
         public string Name
         {
-            get
-            {
-                return name;
-            }
-
+            get => name;
             set
             {
                 if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("Name cannot be null or white space");
@@ -27,11 +23,7 @@ namespace Lab4.Entities
 
         public int ActorsAmount
         {
-            get
-            {
-                return actorsAmount;
-            }
-
+            get => actorsAmount;
             set
             {
                 if (value < 1) throw new ArgumentException("Actors amount cannot be less than 1");
@@ -41,11 +33,7 @@ namespace Lab4.Entities
 
         public int ActorsSalary
         {
-            get
-            {
-                return actorsSalary;
-            }
-
+            get => actorsSalary;
             set
             {
                 if (value < 0) throw new ArgumentException("Actors salary cannot be less than 0");
@@ -74,11 +62,9 @@ namespace Lab4.Entities
                         case "Name":
                             Name = reader.ReadElementContentAsString();
                             break;
-
                         case ("ActorsAmount"):
                             ActorsAmount = int.Parse(reader.ReadElementContentAsString());
                             break;
-
                         case "ActorsSalary":
                             ActorsSalary = int.Parse(reader.ReadElementContentAsString());
                             break;
@@ -90,17 +76,9 @@ namespace Lab4.Entities
 
         public void WriteXml(XmlWriter writer)
         {
-            writer.WriteStartElement("Name");
-            writer.WriteString(name);
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("ActorsAmount");
-            writer.WriteString(actorsAmount.ToString());
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("ActorsSalary");
-            writer.WriteString(actorsSalary.ToString());
-            writer.WriteEndElement();
+            writer.WriteElementString("Name", name); 
+            writer.WriteElementString("ActorsAmount", actorsAmount.ToString());
+            writer.WriteElementString("ActorsSalary", ActorsSalary.ToString());
         }
     }
 }

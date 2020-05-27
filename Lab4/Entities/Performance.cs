@@ -17,29 +17,17 @@ namespace Lab4.Entities
 
         public string Name
         {
-            get
-            {
-                return name;
-            }
-
+            get => name;
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentException("Performance name cannot be null or white space");
-                }
-
+                if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("Performance name cannot be null or white space");
                 name = value;
             }
         }
 
         public DateTime StartDate
         {
-            get
-            {
-                return startDate;
-            }
-
+            get => startDate;
             set
             {
                 startDate = value;
@@ -48,18 +36,10 @@ namespace Lab4.Entities
 
         public int RentPrice
         {
-            get
-            {
-                return rentPrice;
-            }
-
+            get => rentPrice;
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Rent price cannot be less than 0");
-                }
-
+                if (value < 0) throw new ArgumentException("Rent price cannot be less than 0");
                 rentPrice = value;
             }
         }
@@ -84,36 +64,20 @@ namespace Lab4.Entities
 
         internal Location Location
         {
-            get
-            {
-                return location;
-            }
-
+            get => location;
             set
             {
-                if (value is null)
-                {
-                    throw new ArgumentNullException("Location cannot be null");
-                }
-
+                if (value is null) throw new ArgumentNullException("Location cannot be null");
                 location = value;
             }
         }
 
         internal Troupe Troupe
         {
-            get
-            {
-                return troupe;
-            }
-
+            get => troupe;
             set
             {
-                if (value is null)
-                {
-                    throw new ArgumentNullException("Troupe cannot be null");
-                }
-
+                if (value is null) throw new ArgumentNullException("Troupe cannot be null");
                 troupe = value;
             }
         }
@@ -140,67 +104,42 @@ namespace Lab4.Entities
                         case "Name":
                             Name = reader.ReadElementContentAsString();
                             break;
-
                         case "Category":
                             Enum.TryParse(reader.ReadElementContentAsString(), out category);
                             break;
-
                         case "StartDate":
                             StartDate = DateTime.Parse(reader.ReadElementContentAsString());
                             break;
-
                         case "RentPrice":
                             RentPrice = int.Parse(reader.ReadElementContentAsString());
                             break;
-
                         case "HasOrchestra":
                             HasOrchestra = bool.Parse(reader.ReadElementContentAsString());
                             break;
-
                         case "Location":
                             location = new Location();
                             location.ReadXml(reader);
                             break;
-
                         case "Troupe":
                             troupe = new Troupe();
                             troupe.ReadXml(reader);
                             break;
                     }
                 }
-                if (reader.Name.Equals("Performance"))
-                {
-                    break;
-                }
+                if (reader.Name.Equals("Performance")) break;
             }
         }
 
         public void WriteXml(XmlWriter writer)
         {
-            writer.WriteStartElement("Name");
-            writer.WriteString(name);
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("Category");
-            writer.WriteString(category.ToString());
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("StartDate");
-            writer.WriteString(startDate.ToString());
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("RentPrice");
-            writer.WriteString(rentPrice.ToString());
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("HasOrchestra");
-            writer.WriteString(hasOrchestra.ToString());
-            writer.WriteEndElement();
-
+            writer.WriteElementString("Name", name);
+            writer.WriteElementString("Category", category.ToString());
+            writer.WriteElementString("StartDate", startDate.ToString());
+            writer.WriteElementString("RentPrice", rentPrice.ToString());
+            writer.WriteElementString("HasOrchestra", hasOrchestra.ToString());
             writer.WriteStartElement("Location");
             location.WriteXml(writer);
             writer.WriteEndElement();
-
             writer.WriteStartElement("Troupe");
             troupe.WriteXml(writer);
             writer.WriteEndElement();

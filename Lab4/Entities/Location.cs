@@ -15,11 +15,7 @@ namespace Lab4.Entities
 
         public string Name
         {
-            get
-            {
-                return name;
-            }
-
+            get => name;
             set
             {
                 if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("Name cannot be null or white space");
@@ -29,11 +25,7 @@ namespace Lab4.Entities
 
         public string Address
         {
-            get
-            {
-                return address;
-            }
-
+            get => address;
             set
             {
                 if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("Address cannot be null or white space");
@@ -43,11 +35,7 @@ namespace Lab4.Entities
 
         public int RentalPrice
         {
-            get
-            {
-                return rentalPrice;
-            }
-
+            get => rentalPrice;
             set
             {
                 if (value < 0) throw new ArgumentException("Rental price cannot be less than 0");
@@ -57,11 +45,7 @@ namespace Lab4.Entities
 
         public int FreeSeatsAmount
         {
-            get
-            {
-                return freeSeatsAmount;
-            }
-
+            get => freeSeatsAmount;
             set
             {
                 if (value < 0) throw new ArgumentException("Free seats amount cannot be less than 0");
@@ -71,11 +55,7 @@ namespace Lab4.Entities
 
         public static int OrchestraPrice
         {
-            get
-            {
-                return orchestraPrice;
-            }
-
+            get => orchestraPrice;
             set
             {
                 if (value < 0) throw new ArgumentException("Orchestra price cannot be less than 0");
@@ -105,19 +85,15 @@ namespace Lab4.Entities
                         case "Name":
                             Name = reader.ReadElementContentAsString();
                             break;
-
                         case "Address":
                             Address = reader.ReadElementContentAsString();
                             break;
-
                         case "RentalPrice":
                             RentalPrice = int.Parse(reader.ReadElementContentAsString());
                             break;
-
                         case "FreeSeatsAmount":
                             FreeSeatsAmount = int.Parse(reader.ReadElementContentAsString());
                             break;
-
                         case "OrchestraPrice":
                             OrchestraPrice = int.Parse(reader.ReadElementContentAsString());
                             break;
@@ -129,25 +105,11 @@ namespace Lab4.Entities
 
         public void WriteXml(XmlWriter writer)
         {
-            writer.WriteStartElement("Name");
-            writer.WriteString(name);
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("Address");
-            writer.WriteString(address);
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("RentalPrice");
-            writer.WriteString(rentalPrice.ToString());
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("FreeSeatsAmount");
-            writer.WriteString(freeSeatsAmount.ToString());
-            writer.WriteEndElement();
-
-            writer.WriteStartElement("OrchestraPrice");
-            writer.WriteString(orchestraPrice.ToString());
-            writer.WriteEndElement();
+            writer.WriteElementString("Name", name);
+            writer.WriteElementString("Address", address);
+            writer.WriteElementString("RentalPrice", rentalPrice.ToString());
+            writer.WriteElementString("FreeSeatsAmount", freeSeatsAmount.ToString());
+            writer.WriteElementString("OrchestraPrice", orchestraPrice.ToString());
         }
     }
 }
