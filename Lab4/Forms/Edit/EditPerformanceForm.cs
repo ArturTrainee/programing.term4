@@ -54,13 +54,13 @@ namespace Lab4.Forms
                 performance.Category = (Category)comboBox1.SelectedItem;
                 performance.StartDate = dateTimePicker1.Value;
                 performance.RentPrice = int.Parse(rentTextBox.Text);
-                DialogResult = DialogResult.OK;
-                Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
@@ -71,13 +71,16 @@ namespace Lab4.Forms
 
         private void EditPerformanceForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (DialogResult != DialogResult.OK && MessageBox.Show("Close the window?", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (DialogResult != DialogResult.OK)
             {
-                MessageBox.Show(Messages.CHANGES_CANCELED);
-            }
-            else
-            {
-                e.Cancel = true;
+                if (MessageBox.Show("Close the window?", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    MessageBox.Show(Messages.CHANGES_CANCELED);
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
             }
         }
     }

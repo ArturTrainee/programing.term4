@@ -35,10 +35,6 @@ namespace Lab4.Forms
                     performance.Location = createLocationForm.CreatedLocation;
                     textBox2.Text = performance.Location.ToString();
                 }
-                else
-                {
-                    MessageBox.Show(Messages.CHANGES_CANCELED);
-                }
             }
             catch (Exception ex)
             {
@@ -72,13 +68,13 @@ namespace Lab4.Forms
                 performance.StartDate = dateTimePicker1.Value;
                 performance.RentPrice = int.Parse(textBox4.Text);
                 performance.HasOrchestra = checkBox1.Checked;
-                DialogResult = DialogResult.OK;
-                Close();
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
@@ -94,13 +90,16 @@ namespace Lab4.Forms
 
         private void CreatePerformanceForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (DialogResult != DialogResult.OK && MessageBox.Show("Close the window?", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (DialogResult != DialogResult.OK)
             {
-                MessageBox.Show(Messages.CHANGES_CANCELED);
-            }
-            else
-            {
-                e.Cancel = true;
+                if (MessageBox.Show("Close the window?", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    MessageBox.Show(Messages.CHANGES_CANCELED);
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
             }
         }
     }

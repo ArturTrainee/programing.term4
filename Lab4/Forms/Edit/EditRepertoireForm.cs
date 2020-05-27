@@ -8,6 +8,8 @@ namespace Lab4.Forms
     {
         private Repertoire repertoire;
 
+        public Repertoire Repertoire { get => repertoire; }
+
         public EditRepertoireForm(Repertoire repertoireToEdit)
         {
             InitializeComponent();
@@ -24,13 +26,13 @@ namespace Lab4.Forms
             try
             {
                 repertoire.LocationName = textBox1.Text;
-                DialogResult = DialogResult.OK;
-                Close();
             }
             catch(ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
@@ -55,13 +57,16 @@ namespace Lab4.Forms
 
         private void EditRepertoireForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (DialogResult != DialogResult.OK && MessageBox.Show("Close the window?", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (DialogResult != DialogResult.OK)
             {
-                MessageBox.Show(Messages.CHANGES_CANCELED);
-            }
-            else
-            {
-                e.Cancel = true;
+                if (MessageBox.Show("Close the window?", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    MessageBox.Show(Messages.CHANGES_CANCELED);
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
             }
         }
     }

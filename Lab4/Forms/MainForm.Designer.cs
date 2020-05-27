@@ -28,22 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.repertoiresListBox = new System.Windows.Forms.ListBox();
             this.buttonNew = new System.Windows.Forms.Button();
             this.buttonEditSelected = new System.Windows.Forms.Button();
+            this.deleteBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listBox1
+            // repertoiresListBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.HorizontalScrollbar = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(12, 12);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.ScrollAlwaysVisible = true;
-            this.listBox1.Size = new System.Drawing.Size(776, 260);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
+            this.repertoiresListBox.FormattingEnabled = true;
+            this.repertoiresListBox.HorizontalScrollbar = true;
+            this.repertoiresListBox.ItemHeight = 16;
+            this.repertoiresListBox.Location = new System.Drawing.Point(12, 12);
+            this.repertoiresListBox.Name = "repertoiresListBox";
+            this.repertoiresListBox.ScrollAlwaysVisible = true;
+            this.repertoiresListBox.Size = new System.Drawing.Size(776, 260);
+            this.repertoiresListBox.TabIndex = 0;
+            this.repertoiresListBox.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
             // 
             // buttonNew
             // 
@@ -66,14 +67,26 @@
             this.buttonEditSelected.UseVisualStyleBackColor = true;
             this.buttonEditSelected.Click += new System.EventHandler(this.ButtonEditSelected_Click);
             // 
+            // deleteBtn
+            // 
+            this.deleteBtn.Enabled = false;
+            this.deleteBtn.Location = new System.Drawing.Point(395, 287);
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.Size = new System.Drawing.Size(186, 47);
+            this.deleteBtn.TabIndex = 3;
+            this.deleteBtn.Text = "Delete selected";
+            this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 340);
+            this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.buttonEditSelected);
             this.Controls.Add(this.buttonNew);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.repertoiresListBox);
             this.Name = "MainForm";
             this.Text = "Repertoires list";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -84,9 +97,10 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox repertoiresListBox;
         private System.Windows.Forms.Button buttonNew;
         private System.Windows.Forms.Button buttonEditSelected;
+        private System.Windows.Forms.Button deleteBtn;
     }
 }
 

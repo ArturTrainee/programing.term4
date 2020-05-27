@@ -29,13 +29,13 @@ namespace Lab4.Forms
                 troupe.Name = nameTextBox.Text;
                 troupe.ActorsAmount = int.Parse(actorsAmountTextBox.Text);
                 troupe.ActorsSalary = int.Parse(actorsSalaryTextBox.Text);
-                DialogResult = DialogResult.OK;
-                Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
@@ -46,13 +46,16 @@ namespace Lab4.Forms
 
         private void EditTroupeForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (DialogResult != DialogResult.OK && MessageBox.Show("Close the window?", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (DialogResult != DialogResult.OK)
             {
-                MessageBox.Show(Messages.CHANGES_CANCELED);
-            }
-            else
-            {
-                e.Cancel = true;
+                if (MessageBox.Show("Close the window?", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    MessageBox.Show(Messages.CHANGES_CANCELED);
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
             }
         }
     }
