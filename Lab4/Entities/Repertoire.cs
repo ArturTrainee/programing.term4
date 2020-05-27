@@ -26,7 +26,6 @@ namespace Lab4.Entities
                 {
                     throw new ArgumentException("Location name cannot be null or white space");
                 }
-
                 locationName = value;
             }
         }
@@ -40,7 +39,6 @@ namespace Lab4.Entities
                 {
                     throw new ArgumentNullException("Performances list cannot be null");
                 }
-
                 performances = value;
             }
         }
@@ -82,7 +80,6 @@ namespace Lab4.Entities
             do
             {
                 reader.Read();
-
                 if (reader.Name.Equals("LocationName"))
                 {
                     LocationName = reader.ReadElementContentAsString();
@@ -92,11 +89,9 @@ namespace Lab4.Entities
                     do
                     {
                         reader.Read();
-
                         if (reader.Name.Equals("Performance"))
                         {
                             var performance = new Performance();
-
                             try
                             {
                                 performance.ReadXml(reader);

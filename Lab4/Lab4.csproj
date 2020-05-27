@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Lab4.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,44 +52,45 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Messages.cs" />
     <Compile Include="Entities\Performance.cs" />
     <Compile Include="Entities\Repertoire.cs" />
     <Compile Include="Entities\Troupe.cs" />
     <Compile Include="Entities\Location.cs" />
-    <Compile Include="Forms\CreateLocationForm.cs">
+    <Compile Include="Forms\Create\CreateLocationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CreateLocationForm.Designer.cs">
+    <Compile Include="Forms\Create\CreateLocationForm.Designer.cs">
       <DependentUpon>CreateLocationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CreateTroupeForm.cs">
+    <Compile Include="Forms\Create\CreateTroupeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CreateTroupeForm.Designer.cs">
+    <Compile Include="Forms\Create\CreateTroupeForm.Designer.cs">
       <DependentUpon>CreateTroupeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EditLocationForm.cs">
+    <Compile Include="Forms\Edit\EditLocationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EditLocationForm.Designer.cs">
+    <Compile Include="Forms\Edit\EditLocationForm.Designer.cs">
       <DependentUpon>EditLocationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CreatePerformanceForm.cs">
+    <Compile Include="Forms\Create\CreatePerformanceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CreatePerformanceForm.Designer.cs">
+    <Compile Include="Forms\Create\CreatePerformanceForm.Designer.cs">
       <DependentUpon>CreatePerformanceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CreateRepertoireForm.cs">
+    <Compile Include="Forms\Create\CreateRepertoireForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CreateRepertoireForm.Designer.cs">
+    <Compile Include="Forms\Create\CreateRepertoireForm.Designer.cs">
       <DependentUpon>CreateRepertoireForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EditTroupeForm.cs">
+    <Compile Include="Forms\Edit\EditTroupeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EditTroupeForm.Designer.cs">
+    <Compile Include="Forms\Edit\EditTroupeForm.Designer.cs">
       <DependentUpon>EditTroupeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.cs">
@@ -95,45 +99,47 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EditPerformanceForm.cs">
+    <Compile Include="Forms\Edit\EditPerformanceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EditPerformanceForm.Designer.cs">
+    <Compile Include="Forms\Edit\EditPerformanceForm.Designer.cs">
       <DependentUpon>EditPerformanceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EditRepertoireForm.cs">
+    <Compile Include="Forms\Edit\EditRepertoireForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EditRepertoireForm.Designer.cs">
+    <Compile Include="Forms\Edit\EditRepertoireForm.Designer.cs">
       <DependentUpon>EditRepertoireForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\CreateLocationForm.resx">
+    <Compile Include="Utils\XmlFileReader.cs" />
+    <Compile Include="Utils\XmlFileWriter.cs" />
+    <EmbeddedResource Include="Forms\Create\CreateLocationForm.resx">
       <DependentUpon>CreateLocationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CreateTroupeForm.resx">
+    <EmbeddedResource Include="Forms\Create\CreateTroupeForm.resx">
       <DependentUpon>CreateTroupeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CreatePerformanceForm.resx">
+    <EmbeddedResource Include="Forms\Create\CreatePerformanceForm.resx">
       <DependentUpon>CreatePerformanceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CreateRepertoireForm.resx">
+    <EmbeddedResource Include="Forms\Create\CreateRepertoireForm.resx">
       <DependentUpon>CreateRepertoireForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditLocationForm.resx">
+    <EmbeddedResource Include="Forms\Edit\EditLocationForm.resx">
       <DependentUpon>EditLocationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditPerformanceForm.resx">
+    <EmbeddedResource Include="Forms\Edit\EditPerformanceForm.resx">
       <DependentUpon>EditPerformanceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditTroupeForm.resx">
+    <EmbeddedResource Include="Forms\Edit\EditTroupeForm.resx">
       <DependentUpon>EditTroupeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditRepertoireForm.resx">
+    <EmbeddedResource Include="Forms\Edit\EditRepertoireForm.resx">
       <DependentUpon>EditRepertoireForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
