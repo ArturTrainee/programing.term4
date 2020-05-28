@@ -4,45 +4,70 @@ using Lab4.Entities;
 
 namespace Lab4.Forms
 {
-    public partial class EditPerformanceForm : Form
+    public partial class PerformanceInfoForm : Form
     {
         private Performance performance;
 
         internal Performance Performance
         {
-            get
-            {
-                return performance;
-            }
+            get => performance;
         }
 
-        internal EditPerformanceForm(Performance performance)
+        public PerformanceInfoForm() : this(new Performance())
+        {
+        }
+
+        internal PerformanceInfoForm(Performance performance)
         {
             InitializeComponent();
+            this.performance = performance;
             nameTextBox.Text = performance.Name;
-            comboBox1.Items.AddRange(new Enum[] { Category.Drama, Category.Operata, Category.Opera, Category.Ballet });
-            comboBox1.SelectedItem = performance.Category;
+            FillCategoryComboBox();
             locationTextBox.Text = performance.Location.ToString();
             troupeTextBox.Text = performance.Troupe.ToString();
             dateTimePicker1.Value = performance.StartDate;
             rentTextBox.Text = performance.RentPrice.ToString();
-            this.performance = performance;
+        }
+    
+        private void FillCategoryComboBox()
+        {
+            var categories = (Category[])Enum.GetValues(typeof(Category));
+            foreach (var c in categories)
+            {
+                categoryComboBox.Items.Add(c);
+            }
+            categoryComboBox.SelectedIndex = (int)performance.Category;
+        }
+
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            performance.Category = (Category)categoryComboBox.SelectedIndex;
         }
 
         private void EditLocationBtn_Click(object sender, EventArgs e)
         {
-            var editLocationForm = new EditLocationForm(performance.Location);
+            var editLocationForm = new LocationInfoForm(performance.Location);
             try
             {
                 if (editLocationForm.ShowDialog() == DialogResult.OK)
                 {
-                    performance.Location = editLocationForm.EditedLocation;
+                    performance.Location = editLocationForm.NewLocation;
                     locationTextBox.Text = performance.Location.ToString();
                 }
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void EditTroupeBtn_Click(object sender, EventArgs e)
+        {
+            var editTroupeForm = new TroupeInfoForm(Performance.Troupe);
+            if (editTroupeForm.ShowDialog() == DialogResult.OK)
+            {
+                performance.Troupe = editTroupeForm.Troupe;
+                troupeTextBox.Text = performance.Troupe.ToString();
             }
         }
 
@@ -51,16 +76,17 @@ namespace Lab4.Forms
             try
             {
                 performance.Name = nameTextBox.Text;
-                performance.Category = (Category)comboBox1.SelectedItem;
+                performance.Category = (Category)categoryComboBox.SelectedIndex;
                 performance.StartDate = dateTimePicker1.Value;
                 performance.RentPrice = int.Parse(rentTextBox.Text);
+                performance.HasOrchestra = withOrchestraCheckBox.Checked;
+                DialogResult = DialogResult.OK;
+                Close();
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            DialogResult = DialogResult.OK;
-            Close();
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
@@ -77,10 +103,7 @@ namespace Lab4.Forms
                 {
                     MessageBox.Show(Messages.CHANGES_CANCELED);
                 }
-                else
-                {
-                    e.Cancel = true;
-                }
+                else e.Cancel = true;
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Lab4.Forms
 {
-    partial class EditLocationForm
+    partial class LocationInfoForm
     {
         /// <summary>
         /// Required designer variable.

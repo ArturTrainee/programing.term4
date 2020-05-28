@@ -4,19 +4,22 @@ using System.Windows.Forms;
 
 namespace Lab4.Forms
 {
-    public partial class EditLocationForm : Form
+    public partial class LocationInfoForm : Form
     {
         private Location location;
 
-        internal Location EditedLocation
+        internal Location NewLocation
         {
-            get
-            {
-                return location;
-            }
+            get => location;
         }
 
-        public EditLocationForm(Location location)
+        public LocationInfoForm()
+        {
+            InitializeComponent();
+            location = new Location();
+        }
+
+        public LocationInfoForm(Location location)
         {
             InitializeComponent();
             this.location = location;
@@ -36,13 +39,13 @@ namespace Lab4.Forms
                 location.RentalPrice = int.Parse(rentalPriceTextBox.Text);
                 location.FreeSeatsAmount = int.Parse(freeSeatsAmountTextBox.Text);
                 Entities.Location.OrchestraPrice = int.Parse(orchestraPriceTextBox.Text);
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            DialogResult = DialogResult.OK;
-            Close();
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
@@ -59,10 +62,7 @@ namespace Lab4.Forms
                 {
                     MessageBox.Show(Messages.CHANGES_CANCELED);
                 }
-                else
-                {
-                    e.Cancel = true;
-                }
+                else e.Cancel = true;
             }
         }
     }

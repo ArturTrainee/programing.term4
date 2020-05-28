@@ -1,6 +1,6 @@
 ﻿namespace Lab4.Forms
 {
-    partial class EditTroupeForm
+    partial class TroupeInfoForm
     {
         /// <summary>
         /// Required designer variable.

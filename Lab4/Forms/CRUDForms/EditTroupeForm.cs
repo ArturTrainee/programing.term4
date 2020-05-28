@@ -4,38 +4,42 @@ using System.Windows.Forms;
 
 namespace Lab4.Forms
 {
-    public partial class CreateTroupeForm : Form
+    public partial class TroupeInfoForm : Form
     {
         private Troupe troupe;
 
         internal Troupe Troupe
         {
-            get
-            {
-                return troupe;
-            }
+            get => troupe;
         }
 
-        public CreateTroupeForm()
+        public TroupeInfoForm() : this(new Troupe())
+        {
+        }
+
+        public TroupeInfoForm(Troupe troupe)
         {
             InitializeComponent();
-            troupe = new Troupe();
+            this.troupe = troupe;
+            nameTextBox.Text = troupe.Name;
+            actorsAmountTextBox.Text = troupe.ActorsAmount.ToString();
+            actorsSalaryTextBox.Text = troupe.ActorsSalary.ToString();
         }
 
         private void OkBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                troupe.Name = textBox1.Text;
-                troupe.ActorsAmount = int.Parse(textBox2.Text);
-                troupe.ActorsSalary = int.Parse(textBox3.Text);
+                troupe.Name = nameTextBox.Text;
+                troupe.ActorsAmount = int.Parse(actorsAmountTextBox.Text);
+                troupe.ActorsSalary = int.Parse(actorsSalaryTextBox.Text);
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            DialogResult = DialogResult.OK;
-            Close();
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
@@ -44,7 +48,7 @@ namespace Lab4.Forms
             Close();
         }
 
-        private void CreateTroupeForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void EditTroupeForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (DialogResult != DialogResult.OK)
             {
@@ -52,10 +56,7 @@ namespace Lab4.Forms
                 {
                     MessageBox.Show(Messages.CHANGES_CANCELED);
                 }
-                else
-                {
-                    e.Cancel = true;
-                }
+                else e.Cancel = true;
             }
         }
     }

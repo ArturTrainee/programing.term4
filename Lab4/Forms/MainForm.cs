@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Lab4.Forms
 {
     public partial class MainForm : Form
     {
-        internal static readonly string REPERTOIRES_PATH = Path.Combine(Directory.GetCurrentDirectory(), "all_repertoires.xml");
+        private static readonly string REPERTOIRES_PATH = Path.Combine(Directory.GetCurrentDirectory(), "all_repertoires.xml");
 
         private readonly IDictionary<string, Repertoire> repertoires = new Dictionary<string, Repertoire>();
 
@@ -21,33 +22,46 @@ namespace Lab4.Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            var repertoiresList = XmlEntitiesReader<Repertoire>.ReadEntitiesFrom(REPERTOIRES_PATH, "Repertoire", "ArrayOfRepertoire");
+            var repertoiresList = XmlRepertoiresReader.ReadEntitiesFrom(REPERTOIRES_PATH);
             foreach (var repertoire in repertoiresList)
             {
                 repertoires.Add(repertoire.ToShortString(), repertoire);
-                repertoiresListBox.Items.Add(repertoire);
+                repertoiresListBox.Items.Add(repertoire.ToShortString());
             }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            XmlFileWriter<Repertoire>.WriteEntitiesTo(REPERTOIRES_PATH, repertoires.Values.ToList());
+            var writeSettings = new XmlWriterSettings();
+            writeSettings.Indent = true;
+            writeSettings.NewLineOnAttributes = true;
+            writeSettings.OmitXmlDeclaration = false;
+            writeSettings.ConformanceLevel = ConformanceLevel.Auto;
+            XmlRepertoiresWriter.WriteEntitiesTo(REPERTOIRES_PATH, writeSettings, repertoires.Values.ToList());
         }
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            buttonEditSelected.Enabled = true;
-            deleteBtn.Enabled = true;
+            if (repertoiresListBox.SelectedIndex == -1)
+            {
+                buttonEditSelected.Enabled = false;
+                deleteBtn.Enabled = false;
+            }
+            else 
+            {
+                buttonEditSelected.Enabled = true;
+                deleteBtn.Enabled = true;
+            }
         }
 
         private void ButtonNew_Click(object sender, EventArgs e)
         {
-            var formCreateRepertoire = new CreateRepertoireForm();
+            var formCreateRepertoire = new RepertoireInfoForm();
             if (formCreateRepertoire.ShowDialog() == DialogResult.OK)
             {
                 var newRepertoire = formCreateRepertoire.Repertoire;
-                repertoiresListBox.Items.Add(newRepertoire.ToString());
-                repertoires.Add(newRepertoire.ToString(), newRepertoire);
+                repertoiresListBox.Items.Add(newRepertoire.ToShortString());
+                repertoires.Add(newRepertoire.ToShortString(), newRepertoire);
             }
         }
 
@@ -59,15 +73,16 @@ namespace Lab4.Forms
                 return;
             }
             var selectedItem = repertoiresListBox.SelectedItem;
-            var id = (selectedItem as string);
+            var id = selectedItem.ToString();
             repertoires.TryGetValue(id, out Repertoire selectedRepertoire);
-            var formEditRepertoire = new EditRepertoireForm(selectedRepertoire);
+            var formEditRepertoire = new RepertoireInfoForm(selectedRepertoire);
             if (formEditRepertoire.ShowDialog() == DialogResult.OK)
             {
                 var editedRepertoire = formEditRepertoire.Repertoire;
                 repertoires.Remove(id);
-                repertoires.Add(editedRepertoire.ToString(), editedRepertoire);
-                repertoiresListBox.SelectedItem = editedRepertoire.ToString();
+                repertoiresListBox.Items.Remove(id);
+                repertoires.Add(editedRepertoire.ToShortString(), editedRepertoire);
+                repertoiresListBox.Items.Add(editedRepertoire.ToShortString());
             }
         }
 
@@ -81,8 +96,7 @@ namespace Lab4.Forms
             if (MessageBox.Show("Delete selected repertoire?", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {   
                 var selectedItem = repertoiresListBox.SelectedItem;
-                var id = (selectedItem as string);
-                repertoires.Remove(id);
+                repertoires.Remove(selectedItem.ToString());
                 repertoiresListBox.Items.RemoveAt(repertoiresListBox.SelectedIndex);
             }
         }
