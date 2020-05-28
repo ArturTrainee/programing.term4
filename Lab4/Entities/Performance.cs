@@ -7,13 +7,13 @@ namespace Lab4.Entities
 {
     internal class Performance : IXmlSerializable
     {
-        private string name;
-        private Category category;
-        private Location location;
-        private Troupe troupe;
-        private DateTime startDate;
-        private int rentPrice;
-        private bool hasOrchestra;
+        private string name = "";
+        private Category category = Category.Drama;
+        private Location location = new Location();
+        private Troupe troupe = new Troupe();
+        private DateTime startDate = DateTime.Now;
+        private int rentPrice = 0;
+        private bool hasOrchestra = false;
 
         public string Name
         {
@@ -82,12 +82,6 @@ namespace Lab4.Entities
             }
         }
 
-        public override string ToString()
-        {
-            return "Performance {Name: " + name + ", Category: " + category + ", " + location + ", " + troupe + ", Date: " + startDate +
-                ", Rent Price: " + rentPrice + ", Has Orchestra: " + hasOrchestra + "}";
-        }
-
         public XmlSchema GetSchema()
         {
             return null;
@@ -143,6 +137,12 @@ namespace Lab4.Entities
             writer.WriteStartElement("Troupe");
             troupe.WriteXml(writer);
             writer.WriteEndElement();
+        }
+
+        public override string ToString()
+        {
+            return "Performance {Name: " + name + ", Category: " + category + ", " + location + ", " + troupe + ", Date: " + startDate +
+                ", Rent Price: " + rentPrice + ", Has Orchestra: " + hasOrchestra + "}";
         }
     }
 }

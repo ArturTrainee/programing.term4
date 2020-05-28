@@ -7,9 +7,9 @@ namespace Lab4.Entities
 {
     public class Troupe : IXmlSerializable
     {
-        private string name;
-        private int actorsAmount;
-        private int actorsSalary;
+        private string name = "";
+        private int actorsAmount = 1;
+        private int actorsSalary = 0;
 
         public string Name
         {
@@ -39,11 +39,6 @@ namespace Lab4.Entities
                 if (value < 0) throw new ArgumentException("Actors salary cannot be less than 0");
                 actorsSalary = value;
             }
-        }
-
-        public override string ToString()
-        {
-            return "Troupe {Name: " + name + ", Actors Amount: " + actorsAmount + ", Actors Salary: " + actorsSalary + "}";
         }
 
         public XmlSchema GetSchema()
@@ -79,6 +74,11 @@ namespace Lab4.Entities
             writer.WriteElementString("Name", name); 
             writer.WriteElementString("ActorsAmount", actorsAmount.ToString());
             writer.WriteElementString("ActorsSalary", ActorsSalary.ToString());
+        }
+
+        public override string ToString()
+        {
+            return "Troupe {Name: " + name + ", Actors Amount: " + actorsAmount + ", Actors Salary: " + actorsSalary + "}";
         }
     }
 }

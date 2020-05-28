@@ -7,11 +7,11 @@ namespace Lab4.Entities
 {
     public class Location : IXmlSerializable
     {
-        private string name;
-        private string address;
-        private int rentalPrice;
-        private int freeSeatsAmount;
-        internal static int orchestraPrice;
+        private string name = "";
+        private string address = "";
+        private int rentalPrice = 0;
+        private int freeSeatsAmount = 0;
+        internal static int orchestraPrice = 0;
 
         public string Name
         {
@@ -63,12 +63,6 @@ namespace Lab4.Entities
             }
         }
 
-        public override string ToString()
-        {
-            return "Location {Name: " + name + ", Address: " + address + ", Rental Price: " + rentalPrice + ", Free Seats Amount: " +
-                freeSeatsAmount + ", Orchestra Price: " + orchestraPrice + "}";
-        }
-
         public XmlSchema GetSchema()
         {
             return null;
@@ -110,6 +104,12 @@ namespace Lab4.Entities
             writer.WriteElementString("RentalPrice", rentalPrice.ToString());
             writer.WriteElementString("FreeSeatsAmount", freeSeatsAmount.ToString());
             writer.WriteElementString("OrchestraPrice", orchestraPrice.ToString());
+        }
+
+        public override string ToString()
+        {
+            return "Location {Name: " + name + ", Address: " + address + ", Rental Price: " + rentalPrice + ", Free Seats Amount: " +
+                freeSeatsAmount + ", Orchestra Price: " + orchestraPrice + "}";
         }
     }
 }

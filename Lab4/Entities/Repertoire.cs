@@ -9,13 +9,8 @@ namespace Lab4.Entities
 {
     public class Repertoire : IXmlSerializable
     {
-        private string locationName;
-        private IList<Performance> performances;
-
-        public Repertoire()
-        {
-            performances = new List<Performance>();
-        }
+        private string locationName = "";
+        private IList<Performance> performances = new List<Performance>();
 
         public string LocationName
         {
@@ -42,45 +37,38 @@ namespace Lab4.Entities
             return performances.Where(p => p.ToString().Equals(searchedItem)).First();
         }
 
-        public string ToShortString()
-        {
-            return "Repertoire {Location Name: " + locationName + ", Performances amount: " + performances.Count + "}";
-        }
-
-        public override string ToString()
-        {
-            return "Repertoire {LocationName: " + locationName + ", Performances: " + 
-                string.Join(";\n", performances.Select(p => p.ToString()).ToArray()) + "}";
-        }
-
         public XmlSchema GetSchema() => null;
 
         public void ReadXml(XmlReader reader)
         {
             while (reader.Read())
             {
-                if (reader.Name.Equals("LocationName"))
+                if (reader.IsStartElement())
                 {
-                    LocationName = reader.ReadElementContentAsString();
-                }
-                if (reader.Name.Equals("Performances"))
-                {
-                    do
+                    if (reader.Name.Equals("LocationName"))
                     {
-                        reader.Read();
-                        if (reader.Name.Equals("Performance"))
+                        LocationName = reader.ReadElementContentAsString();
+                    }
+                    if (reader.Name.Equals("Performances"))
+                    {
+                        if (reader.IsEmptyElement) return;
+                        while (reader.Read())
                         {
-                            var performance = new Performance();
-                            try
+                            if (reader.IsStartElement() && reader.Name.Equals("Performance"))
                             {
-                                performance.ReadXml(reader);
-                                performances.Add(performance);
+                                var performance = new Performance();
+                                try
+                                {
+                                    performance.ReadXml(reader);
+                                    performances.Add(performance);
+                                }
+                                catch (ArgumentException)
+                                {
+                                }
                             }
-                            catch (ArgumentException)
-                            {
-                            }
+                            if (reader.Name.Equals("Performances")) break;
                         }
-                    } while (reader.Name.Equals("Performance"));
+                    }
                 }
                 if (reader.Name.Equals("Repertoire")) break;
             }
@@ -97,6 +85,18 @@ namespace Lab4.Entities
                 writer.WriteEndElement();
             }
             writer.WriteEndElement();
+        }
+
+        public string ToShortString()
+        {
+            return "Repertoire {Location Name: " + locationName + ", Performances amount: " + performances.Count + "}";
+        }
+
+        public override string ToString()
+        {
+            return "Repertoire {LocationName: " + locationName + ", Performances: " +
+                string.Join("; ", performances.Select(p => p.ToString()).ToArray())
+                 + "}";
         }
     }
 }
