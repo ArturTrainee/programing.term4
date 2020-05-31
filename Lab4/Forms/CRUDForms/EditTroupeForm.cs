@@ -10,7 +10,10 @@ namespace Lab4.Forms
 
         internal Troupe Troupe
         {
-            get => troupe;
+            get
+            {
+                return troupe;
+            }
         }
 
         public TroupeInfoForm() : this(new Troupe())

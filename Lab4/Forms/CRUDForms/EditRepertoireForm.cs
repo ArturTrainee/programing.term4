@@ -9,7 +9,13 @@ namespace Lab4.Forms
     {
         private Repertoire repertoire;
 
-        public Repertoire Repertoire { get => repertoire; }
+        public Repertoire Repertoire
+        {
+            get
+            {
+                return repertoire;
+            }
+        }
 
         public RepertoireInfoForm() : this(new Repertoire())
         {

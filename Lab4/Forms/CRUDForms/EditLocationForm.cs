@@ -10,7 +10,10 @@ namespace Lab4.Forms
 
         internal Location NewLocation
         {
-            get => location;
+            get
+            {
+                return location;
+            }
         }
 
         public LocationInfoForm()

@@ -17,17 +17,29 @@ namespace Lab4.Entities
 
         public string Name
         {
-            get => name;
+            get
+            {
+                return name;
+            }
+
             set
             {
-                if (string.IsNullOrWhiteSpace(value)) throw new ArgumentException("Performance name cannot be null or white space");
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Performance name cannot be null or white space");
+                }
+
                 name = value;
             }
         }
 
         public DateTime StartDate
         {
-            get => startDate;
+            get
+            {
+                return startDate;
+            }
+
             set
             {
                 startDate = value;
@@ -36,10 +48,18 @@ namespace Lab4.Entities
 
         public int RentPrice
         {
-            get => rentPrice;
+            get
+            {
+                return rentPrice;
+            }
+
             set
             {
-                if (value < 0) throw new ArgumentException("Rent price cannot be less than 0");
+                if (value < 0)
+                {
+                    throw new ArgumentException("Rent price cannot be less than 0");
+                }
+
                 rentPrice = value;
             }
         }
@@ -64,20 +84,36 @@ namespace Lab4.Entities
 
         internal Location Location
         {
-            get => location;
+            get
+            {
+                return location;
+            }
+
             set
             {
-                if (value is null) throw new ArgumentNullException("Location cannot be null");
+                if (value is null)
+                {
+                    throw new ArgumentNullException("Location cannot be null");
+                }
+
                 location = value;
             }
         }
 
         internal Troupe Troupe
         {
-            get => troupe;
+            get
+            {
+                return troupe;
+            }
+
             set
             {
-                if (value is null) throw new ArgumentNullException("Troupe cannot be null");
+                if (value is null)
+                {
+                    throw new ArgumentNullException("Troupe cannot be null");
+                }
+
                 troupe = value;
             }
         }
@@ -120,7 +156,10 @@ namespace Lab4.Entities
                             break;
                     }
                 }
-                if (reader.Name.Equals("Performance")) break;
+                if (reader.Name.Equals("Performance"))
+                {
+                    break;
+                }
             }
         }
 

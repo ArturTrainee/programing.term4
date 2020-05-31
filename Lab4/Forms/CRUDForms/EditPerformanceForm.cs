@@ -10,7 +10,10 @@ namespace Lab4.Forms
 
         internal Performance Performance
         {
-            get => performance;
+            get
+            {
+                return performance;
+            }
         }
 
         public PerformanceInfoForm() : this(new Performance())
