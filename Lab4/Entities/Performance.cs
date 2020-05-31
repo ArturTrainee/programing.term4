@@ -9,8 +9,8 @@ namespace Lab4.Entities
     {
         private string name = "";
         private Category category = Category.Drama;
-        private Location location = new Location();
-        private Troupe troupe = new Troupe();
+        private Location location;
+        private Troupe troupe;
         private DateTime startDate = DateTime.Now;
         private int rentPrice = 0;
         private bool hasOrchestra = false;

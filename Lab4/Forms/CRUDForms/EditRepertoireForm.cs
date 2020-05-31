@@ -17,8 +17,10 @@ namespace Lab4.Forms
             }
         }
 
-        public RepertoireInfoForm() : this(new Repertoire())
+        public RepertoireInfoForm()
         {
+            InitializeComponent();
+            repertoire = new Repertoire();
         }
 
         public RepertoireInfoForm(Repertoire repertoireToEdit)

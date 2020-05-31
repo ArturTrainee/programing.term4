@@ -16,8 +16,10 @@ namespace Lab4.Forms
             }
         }
 
-        public TroupeInfoForm() : this(new Troupe())
+        public TroupeInfoForm()
         {
+            InitializeComponent();
+            troupe = new Troupe();
         }
 
         public TroupeInfoForm(Troupe troupe)

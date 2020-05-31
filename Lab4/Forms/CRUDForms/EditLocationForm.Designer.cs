@@ -142,7 +142,7 @@
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
-            // EditLocationForm
+            // LocationInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -159,8 +159,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "EditLocationForm";
-            this.Text = "Edit Location";
+            this.Name = "LocationInfoForm";
+            this.Text = "Location Info";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditLocationForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
