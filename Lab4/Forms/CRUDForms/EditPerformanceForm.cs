@@ -10,11 +10,19 @@ namespace Lab4.Forms
 
         internal Performance Performance
         {
-            get => performance;
+            get
+            {
+                return performance;
+            }
         }
 
-        public PerformanceInfoForm() : this(new Performance())
+        public PerformanceInfoForm()
         {
+            InitializeComponent();
+            performance = new Performance();
+            FillCategoryComboBox();
+            addLocationBtn.Enabled = true;
+            addTroupBtn.Enabled = true;
         }
 
         internal PerformanceInfoForm(Performance performance)
@@ -23,12 +31,13 @@ namespace Lab4.Forms
             this.performance = performance;
             nameTextBox.Text = performance.Name;
             FillCategoryComboBox();
-            locationTextBox.Text = performance.Location.ToString();
-            troupeTextBox.Text = performance.Troupe.ToString();
             dateTimePicker1.Value = performance.StartDate;
             rentTextBox.Text = performance.RentPrice.ToString();
+            editLocationBtn.Enabled = true;
+            editTroupeBtn.Enabled = true;
         }
     
+
         private void FillCategoryComboBox()
         {
             var categories = (Category[])Enum.GetValues(typeof(Category));
@@ -39,31 +48,47 @@ namespace Lab4.Forms
             categoryComboBox.SelectedIndex = (int)performance.Category;
         }
 
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             performance.Category = (Category)categoryComboBox.SelectedIndex;
+        }
+
+        private void AddLocationBtn_Click(object sender, EventArgs e)
+        {
+            var editLocationForm = new LocationInfoForm();
+            if (editLocationForm.ShowDialog() == DialogResult.OK)
+            {
+                performance.Location = editLocationForm.NewLocation;
+                locationTextBox.Text = performance.Location.ToString();
+                addLocationBtn.Enabled = false;
+            }
+        }
+
+        private void AddTroupBtn_Click(object sender, EventArgs e)
+        {
+            var editTroupeForm = new TroupeInfoForm();
+            if (editTroupeForm.ShowDialog() == DialogResult.OK)
+            {
+                performance.Troupe = editTroupeForm.Troupe;
+                troupeTextBox.Text = performance.Troupe.ToString();
+                addTroupBtn.Enabled = false;
+            }
         }
 
         private void EditLocationBtn_Click(object sender, EventArgs e)
         {
             var editLocationForm = new LocationInfoForm(performance.Location);
-            try
+            if (editLocationForm.ShowDialog() == DialogResult.OK)
             {
-                if (editLocationForm.ShowDialog() == DialogResult.OK)
-                {
-                    performance.Location = editLocationForm.NewLocation;
-                    locationTextBox.Text = performance.Location.ToString();
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
+                performance.Location = editLocationForm.NewLocation;
+                locationTextBox.Text = performance.Location.ToString();
             }
         }
 
         private void EditTroupeBtn_Click(object sender, EventArgs e)
         {
-            var editTroupeForm = new TroupeInfoForm(Performance.Troupe);
+            var editTroupeForm = new TroupeInfoForm(performance.Troupe);
             if (editTroupeForm.ShowDialog() == DialogResult.OK)
             {
                 performance.Troupe = editTroupeForm.Troupe;
@@ -75,6 +100,16 @@ namespace Lab4.Forms
         {
             try
             {
+                if (performance.Location is null)
+                {
+                    MessageBox.Show("Location is not added");
+                    return;
+                }
+                if (performance.Troupe is null)
+                {
+                    MessageBox.Show("Troup is not added");
+                    return;
+                }
                 performance.Name = nameTextBox.Text;
                 performance.Category = (Category)categoryComboBox.SelectedIndex;
                 performance.StartDate = dateTimePicker1.Value;

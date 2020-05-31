@@ -45,6 +45,8 @@
             this.cancelBtn = new System.Windows.Forms.Button();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.withOrchestraCheckBox = new System.Windows.Forms.CheckBox();
+            this.addLocationBtn = new System.Windows.Forms.Button();
+            this.addTroupBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -77,7 +79,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 161);
+            this.label4.Location = new System.Drawing.Point(12, 192);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 17);
             this.label4.TabIndex = 3;
@@ -86,7 +88,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 263);
+            this.label5.Location = new System.Drawing.Point(10, 311);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 17);
             this.label5.TabIndex = 4;
@@ -95,7 +97,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 296);
+            this.label6.Location = new System.Drawing.Point(10, 344);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 17);
             this.label6.TabIndex = 5;
@@ -114,50 +116,52 @@
             this.locationTextBox.Multiline = true;
             this.locationTextBox.Name = "locationTextBox";
             this.locationTextBox.ReadOnly = true;
-            this.locationTextBox.Size = new System.Drawing.Size(454, 72);
+            this.locationTextBox.Size = new System.Drawing.Size(454, 92);
             this.locationTextBox.TabIndex = 10;
             this.locationTextBox.TabStop = false;
             // 
             // troupeTextBox
             // 
-            this.troupeTextBox.Location = new System.Drawing.Point(87, 161);
+            this.troupeTextBox.Location = new System.Drawing.Point(88, 192);
             this.troupeTextBox.Multiline = true;
             this.troupeTextBox.Name = "troupeTextBox";
             this.troupeTextBox.ReadOnly = true;
-            this.troupeTextBox.Size = new System.Drawing.Size(453, 77);
+            this.troupeTextBox.Size = new System.Drawing.Size(453, 91);
             this.troupeTextBox.TabIndex = 11;
             this.troupeTextBox.TabStop = false;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(86, 258);
+            this.dateTimePicker1.Location = new System.Drawing.Point(86, 306);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(454, 22);
-            this.dateTimePicker1.TabIndex = 4;
+            this.dateTimePicker1.TabIndex = 6;
             // 
             // rentTextBox
             // 
-            this.rentTextBox.Location = new System.Drawing.Point(86, 291);
+            this.rentTextBox.Location = new System.Drawing.Point(86, 339);
             this.rentTextBox.Name = "rentTextBox";
             this.rentTextBox.Size = new System.Drawing.Size(454, 22);
-            this.rentTextBox.TabIndex = 5;
+            this.rentTextBox.TabIndex = 7;
             // 
             // editLocationBtn
             // 
-            this.editLocationBtn.Location = new System.Drawing.Point(6, 97);
+            this.editLocationBtn.Enabled = false;
+            this.editLocationBtn.Location = new System.Drawing.Point(6, 139);
             this.editLocationBtn.Name = "editLocationBtn";
-            this.editLocationBtn.Size = new System.Drawing.Size(75, 30);
-            this.editLocationBtn.TabIndex = 2;
+            this.editLocationBtn.Size = new System.Drawing.Size(75, 34);
+            this.editLocationBtn.TabIndex = 3;
             this.editLocationBtn.Text = "Edit";
             this.editLocationBtn.UseVisualStyleBackColor = true;
             this.editLocationBtn.Click += new System.EventHandler(this.EditLocationBtn_Click);
             // 
             // editTroupeBtn
             // 
-            this.editTroupeBtn.Location = new System.Drawing.Point(6, 181);
+            this.editTroupeBtn.Enabled = false;
+            this.editTroupeBtn.Location = new System.Drawing.Point(5, 251);
             this.editTroupeBtn.Name = "editTroupeBtn";
-            this.editTroupeBtn.Size = new System.Drawing.Size(75, 29);
-            this.editTroupeBtn.TabIndex = 3;
+            this.editTroupeBtn.Size = new System.Drawing.Size(75, 32);
+            this.editTroupeBtn.TabIndex = 5;
             this.editTroupeBtn.Text = "Edit";
             this.editTroupeBtn.UseVisualStyleBackColor = true;
             this.editTroupeBtn.Click += new System.EventHandler(this.EditTroupeBtn_Click);
@@ -167,7 +171,7 @@
             this.okBtn.Location = new System.Drawing.Point(356, 384);
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(90, 33);
-            this.okBtn.TabIndex = 7;
+            this.okBtn.TabIndex = 9;
             this.okBtn.Text = "OK";
             this.okBtn.UseVisualStyleBackColor = true;
             this.okBtn.Click += new System.EventHandler(this.OkBtn_Click);
@@ -177,7 +181,7 @@
             this.cancelBtn.Location = new System.Drawing.Point(452, 384);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(90, 33);
-            this.cancelBtn.TabIndex = 8;
+            this.cancelBtn.TabIndex = 10;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
@@ -189,22 +193,47 @@
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(454, 24);
             this.categoryComboBox.TabIndex = 1;
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
             // withOrchestraCheckBox
             // 
             this.withOrchestraCheckBox.AutoSize = true;
-            this.withOrchestraCheckBox.Location = new System.Drawing.Point(13, 330);
+            this.withOrchestraCheckBox.Location = new System.Drawing.Point(13, 378);
             this.withOrchestraCheckBox.Name = "withOrchestraCheckBox";
             this.withOrchestraCheckBox.Size = new System.Drawing.Size(122, 21);
-            this.withOrchestraCheckBox.TabIndex = 6;
+            this.withOrchestraCheckBox.TabIndex = 8;
             this.withOrchestraCheckBox.Text = "With orchestra";
             this.withOrchestraCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // addLocationBtn
+            // 
+            this.addLocationBtn.Enabled = false;
+            this.addLocationBtn.Location = new System.Drawing.Point(6, 97);
+            this.addLocationBtn.Name = "addLocationBtn";
+            this.addLocationBtn.Size = new System.Drawing.Size(75, 36);
+            this.addLocationBtn.TabIndex = 2;
+            this.addLocationBtn.Text = "Add";
+            this.addLocationBtn.UseVisualStyleBackColor = true;
+            this.addLocationBtn.Click += new System.EventHandler(this.AddLocationBtn_Click);
+            // 
+            // addTroupBtn
+            // 
+            this.addTroupBtn.Enabled = false;
+            this.addTroupBtn.Location = new System.Drawing.Point(6, 212);
+            this.addTroupBtn.Name = "addTroupBtn";
+            this.addTroupBtn.Size = new System.Drawing.Size(75, 34);
+            this.addTroupBtn.TabIndex = 4;
+            this.addTroupBtn.Text = "Add";
+            this.addTroupBtn.UseVisualStyleBackColor = true;
+            this.addTroupBtn.Click += new System.EventHandler(this.AddTroupBtn_Click);
             // 
             // PerformanceInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(553, 429);
+            this.Controls.Add(this.addTroupBtn);
+            this.Controls.Add(this.addLocationBtn);
             this.Controls.Add(this.withOrchestraCheckBox);
             this.Controls.Add(this.categoryComboBox);
             this.Controls.Add(this.cancelBtn);
@@ -223,7 +252,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "PerformanceInfoForm";
-            this.Text = "FormEditPerformance";
+            this.Text = "Performance Info";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditPerformanceForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -249,5 +278,7 @@
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.ComboBox categoryComboBox;
         private System.Windows.Forms.CheckBox withOrchestraCheckBox;
+        private System.Windows.Forms.Button addLocationBtn;
+        private System.Windows.Forms.Button addTroupBtn;
     }
 }

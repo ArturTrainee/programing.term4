@@ -106,7 +106,7 @@
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
-            // EditTroupeForm
+            // TroupeInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -119,8 +119,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "EditTroupeForm";
-            this.Text = "Edit Troupe";
+            this.Name = "TroupeInfoForm";
+            this.Text = "Troupe Info";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditTroupeForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

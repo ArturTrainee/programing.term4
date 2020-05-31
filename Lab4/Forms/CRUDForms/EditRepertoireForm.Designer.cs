@@ -55,16 +55,16 @@
             this.textBox1.Size = new System.Drawing.Size(440, 22);
             this.textBox1.TabIndex = 0;
             // 
-            // listBox1
+            // performancesListBox
             // 
             this.performancesListBox.FormattingEnabled = true;
             this.performancesListBox.HorizontalScrollbar = true;
             this.performancesListBox.ItemHeight = 16;
             this.performancesListBox.Location = new System.Drawing.Point(12, 114);
-            this.performancesListBox.Name = "listBox1";
+            this.performancesListBox.Name = "performancesListBox";
             this.performancesListBox.ScrollAlwaysVisible = true;
             this.performancesListBox.Size = new System.Drawing.Size(508, 276);
-            this.performancesListBox.TabIndex = 1;
+            this.performancesListBox.TabIndex = 2;
             this.performancesListBox.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
             // 
             // label2
@@ -81,7 +81,7 @@
             this.okBtn.Location = new System.Drawing.Point(364, 396);
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(75, 39);
-            this.okBtn.TabIndex = 4;
+            this.okBtn.TabIndex = 5;
             this.okBtn.Text = "OK";
             this.okBtn.UseVisualStyleBackColor = true;
             this.okBtn.Click += new System.EventHandler(this.OkBtn_Click);
@@ -91,7 +91,7 @@
             this.cancelBtn.Location = new System.Drawing.Point(445, 396);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 39);
-            this.cancelBtn.TabIndex = 5;
+            this.cancelBtn.TabIndex = 6;
             this.cancelBtn.Text = "Cacnel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
@@ -112,23 +112,23 @@
             this.addPerformanceBtn.Location = new System.Drawing.Point(154, 69);
             this.addPerformanceBtn.Name = "addPerformanceBtn";
             this.addPerformanceBtn.Size = new System.Drawing.Size(118, 39);
-            this.addPerformanceBtn.TabIndex = 2;
+            this.addPerformanceBtn.TabIndex = 1;
             this.addPerformanceBtn.Text = "Add New";
             this.addPerformanceBtn.UseVisualStyleBackColor = true;
             this.addPerformanceBtn.Click += new System.EventHandler(this.AddPerformanceBtn_Click);
             // 
-            // deletePerformanceBtn
+            // deleteSelectedBtn
             // 
             this.deleteSelectedBtn.Enabled = false;
             this.deleteSelectedBtn.Location = new System.Drawing.Point(402, 69);
-            this.deleteSelectedBtn.Name = "deletePerformanceBtn";
+            this.deleteSelectedBtn.Name = "deleteSelectedBtn";
             this.deleteSelectedBtn.Size = new System.Drawing.Size(118, 39);
-            this.deleteSelectedBtn.TabIndex = 6;
+            this.deleteSelectedBtn.TabIndex = 4;
             this.deleteSelectedBtn.Text = "Delete Selected";
             this.deleteSelectedBtn.UseVisualStyleBackColor = true;
             this.deleteSelectedBtn.Click += new System.EventHandler(this.DeletePerformanceBtn_Click);
             // 
-            // EditRepertoireForm
+            // RepertoireInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -142,8 +142,8 @@
             this.Controls.Add(this.performancesListBox);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Name = "EditRepertoireForm";
-            this.Text = "Edit Repertoire";
+            this.Name = "RepertoireInfoForm";
+            this.Text = "Repertoire Info";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditRepertoireForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
